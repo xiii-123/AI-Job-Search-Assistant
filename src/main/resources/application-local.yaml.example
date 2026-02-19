@@ -1,0 +1,40 @@
+# ============================================================================
+# Local Development Configuration Example
+# ============================================================================
+# 此文件为配置示例，请复制为 application-local.yaml 并填入真实值
+#
+# 使用方法：
+# 1. 复制此文件：cp application-local.yaml.example application-local.yaml
+# 2. 填入实际的 API Keys
+# 3. 运行时激活 local profile：
+#    - 方式一：export SPRING_PROFILES_ACTIVE=local
+#    - 方式二：./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+#    - 方式三：IDE 中设置 Active profiles = local
+# ============================================================================
+
+spring:
+  ai:
+    dashscope:
+      # 通义千问 API Key（必需）
+      # 获取地址：https://bailian.console.aliyun.com/
+      api-key: sk-your-dashscope-api-key-here
+
+  security:
+    jwt:
+      # JWT 密钥（至少 256 位）
+      secret: your-very-long-and-secure-secret-key-at-least-256-bits-for-hs256-encoding
+      expiration: 86400000
+
+  datasource:
+    # 本地数据库路径
+    url: jdbc:sqlite:./data/job_assistant_local.db
+
+app:
+  ai:
+    model: qwen-plus
+    max-tokens: 2000
+    temperature: 0.7
+
+# ============================================================================
+# 更多配置选项请参考 application-local.yaml 模板文件
+# ============================================================================

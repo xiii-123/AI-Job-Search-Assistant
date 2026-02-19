@@ -1,0 +1,31 @@
+# Production Environment Configuration
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  jpa:
+    show-sql: false
+
+  datasource:
+    url: jdbc:sqlite:${DB_PATH:/var/data/job_assistant.db}
+
+# Application Configuration
+app:
+  ai:
+    model: ${AI_MODEL:qwen-plus}
+    max-tokens: ${MAX_TOKENS:2000}
+    temperature: ${TEMPERATURE:0.7}
+  cors:
+    allowed-origins: ${CORS_ORIGINS}
+
+# Logging Configuration
+logging:
+  level:
+    root: WARN
+    com.ai.job: INFO
+    org.springframework.security: WARN
+    com.alibaba.cloud.ai: INFO
+  file:
+    name: ${LOG_PATH:/var/log}/job-assistant.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

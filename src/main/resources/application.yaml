@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: ai-job-assistant
+  profiles:
+    # 激活的环境配置：dev, local, prod
+    # dev: 开发环境（使用默认值）
+    # local: 本地开发环境（会加载 application-local.yaml 中的 API Keys）
+    # prod: 生产环境（从环境变量读取配置）
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  # 如果激活了 local profile，会自动导入 application-local.yaml
+  # 可以通过设置环境变量 SPRING_PROFILES_ACTIVE=local 来激活
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:sqlite:${DB_PATH:./data/job_assistant.db}
+    driver-class-name: org.sqlite.JDBC
+  security:
+    jwt:
+      secret: ${JWT_SECRET:your-secret-key-change-in-production-environment-at-least-256-bits}
+      expiration: ${JWT_EXPIRATION:86400000}
+
+# Spring AI Alibaba Configuration
+spring.ai.dashscope:
+  api-key: ${DASHSCOPE_API_KEY}
+  chat:
+    enabled: true
+  image:
+    enabled: false
+
+# Server Configuration
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+  health:
+    defaults:
+      enabled: true
+
+# Application Configuration
+app:
+  ai:
+    model: ${AI_MODEL:qwen-plus}
+    max-tokens: ${MAX_TOKENS:2000}
+    temperature: ${TEMPERATURE:0.7}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:5173}
+    allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+    allowed-headers: "*"
+    allow-credentials: true
+    max-age: 3600
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.ai.job: DEBUG
+    org.springframework.security: DEBUG
+    com.alibaba.cloud.ai: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

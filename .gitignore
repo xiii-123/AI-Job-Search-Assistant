@@ -1,0 +1,108 @@
+# ============================================================================
+# Git Ignore Configuration for AI Job Search Assistant
+# ============================================================================
+
+### Maven & Build Artifacts ###
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IDE & Editor Configuration ###
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Sublime Text ###
+*.sublime-project
+*.sublime-workspace
+
+### Vim ###
+*.swp
+*.swo
+*~
+
+### Local Configuration & Sensitive Data ###
+# 本地配置文件（包含 API Keys）
+application-local.yaml
+application-*.local.yaml
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+### Database ###
+# SQLite 数据库文件
+data/
+*.db
+*.db-shm
+*.db-wal
+
+### Logs ###
+logs/
+*.log
+
+### Operating System Files ###
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+### Linux ###
+*~
+.directory
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+### Temporary Files ###
+*.tmp
+*.temp
+*.bak
+*.backup
+*.cache
+
+### Claude AI Tools ###
+.claude/
+
+### Test Coverage ###
+.coverage
+coverage/
+
+### Security & Secrets ###
+*.pem
+*.key
+*.cert
+credentials.json
+*secret*
+*credentials*
