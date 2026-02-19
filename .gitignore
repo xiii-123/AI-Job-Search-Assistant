@@ -67,6 +67,7 @@ data/
 ### Logs ###
 logs/
 *.log
+spring-boot.log
 
 ### Operating System Files ###
 ### macOS ###
@@ -92,6 +93,11 @@ $RECYCLE.BIN/
 *.backup
 *.cache
 
+# 临时测试文件
+/tmp/*.log
+/tmp/*.json
+/tmp/*.txt
+
 ### Claude AI Tools ###
 .claude/
 
@@ -106,3 +112,17 @@ coverage/
 credentials.json
 *secret*
 *credentials*
+
+### Documentation (kept in repo, organized in docs/) ###
+# 以下文档保留在根目录，会被提交到Git
+README.md
+LICENSE
+API.md
+pom.xml
+mvnw
+mvnw.cmd
+.gitattributes
+.gitignore
+
+# 根目录下的其他文档由开发人员决定是否保留
+# 本地开发文档统一放在 docs/ 目录

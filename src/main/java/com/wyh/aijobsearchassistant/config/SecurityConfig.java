@@ -85,6 +85,9 @@ public class SecurityConfig {
                 // Public endpoints
                 .requestMatchers("/auth/**", "/actuator/health", "/error").permitAll()
 
+                // Swagger UI (开发环境可开放，生产环境建议关闭)
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
+
                 // All other endpoints require authentication
                 .anyRequest().authenticated()
             )

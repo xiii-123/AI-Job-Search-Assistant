@@ -1,6 +1,8 @@
 package com.wyh.aijobsearchassistant.repository;
 
 import com.wyh.aijobsearchassistant.entity.ChatHistory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -32,4 +34,19 @@ public interface ChatHistoryRepository extends JpaRepository<ChatHistory, Long> 
      * Delete chat history by user ID and conversation ID
      */
     void deleteByUserIdAndConversationId(Long userId, String conversationId);
+
+    /**
+     * Find chat history by conversation ID (分页)
+     */
+    Page<ChatHistory> findByConversationId(String conversationId, Pageable pageable);
+
+    /**
+     * Find all messages in a conversation ordered by creation time
+     */
+    List<ChatHistory> findByConversationIdOrderByCreatedAtAsc(String conversationId);
+
+    /**
+     * Count messages in a conversation
+     */
+    long countByConversationId(String conversationId);
 }
